@@ -25,7 +25,7 @@ $userData->execute();
 <html class="no-js"> <!--<![endif]-->
 <head>
 
-    <title>View Users</title>
+    <title>View Requests</title>
     <?php include '../include/css/mandatory.php' ?>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
 

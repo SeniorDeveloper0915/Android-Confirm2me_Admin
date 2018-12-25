@@ -173,7 +173,7 @@ session_start();
         // get array of dateswise signups
         $query = "SELECT date(`created_at`),count(*) as total,EXTRACT(DAY FROM created_at) AS  today
 			       
-			FROM `users` WHERE
+			FROM `admin` WHERE
 			MONTH(CURDATE()) = MONTH(created_at) AND YEAR(CURDATE()) = YEAR(created_at) 
 			GROUP BY date(`created_at`)
 			ORDER BY date(`created_at`) ASC;";
