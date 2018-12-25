@@ -5,7 +5,7 @@
 
 // if Logged in redirect to dashboard
 if (isset($_SESSION['name'])) {
-    if(isset($_SESSION['table'])){
+    if(isset($_SESSION['admin'])){
         header('location:user/dashboard.php');
     } 
     exit();

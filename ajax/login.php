@@ -31,9 +31,6 @@ if($statement->rowCount() > 0) {
     $_SESSION['admin'] = true;
 
     // Last login update
-    $query	=	'UPDATE `admin` SET lastlogin_at = NOW() where username=?';
-    $statement	=	$db->prepare($query);
-    $statement->execute(array($username));
 
     $output = responseRedirect('view/dashboard.php', 'Logged in Successfully');
 

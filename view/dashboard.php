@@ -28,9 +28,15 @@ session_start();
     $result->execute();
     $totalUsers = $result->fetchColumn();
 
-    // Get last 5 sign ups
-    $userData = $db->prepare('SELECT * FROM users ORDER BY created_at desc LIMIT 0,5');
-    $userData->execute();
+    $sql    = "SELECT count(*) FROM `requests`";
+    $result = $db->prepare($sql);
+    $result->execute();
+    $totalRequests = $result->fetchColumn();
+
+    $sql    = "SELECT count(*) FROM `affidavits`";
+    $result = $db->prepare($sql);
+    $result->execute();
+    $totalAffidavits = $result->fetchColumn();
 
 ?>
 
@@ -75,7 +81,7 @@ session_start();
             <!-- BEGIN PAGE BASE CONTENT -->
             <!-- BEGIN DASHBOARD STATS 1-->
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <a class="dashboard-stat dashboard-stat-v2 blue" href="javascript:;">
@@ -97,8 +103,8 @@ session_start();
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup"></span></div>
-                                    <div class="desc"> Active users </div>
+                                        <span data-counter="counterup"><?php echo $totalRequests; ?></span></div>
+                                    <div class="desc"> Total Requests </div>
                                 </div>
                             </a>
                         </div>
@@ -109,9 +115,9 @@ session_start();
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup"></span>
+                                        <span data-counter="counterup"><?php echo $totalAffidavits; ?></span>
                                     </div>
-                                    <div class="desc"> Inactive User </div>
+                                    <div class="desc"> Total Affidavits </div>
                                 </div>
                             </a>
                         </div>
@@ -134,49 +140,6 @@ session_start();
                             <!-- END Chart and users detail-->
                         </div>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="portlet light bordered" style="padding-bottom: 3.5em;">
-                            <div class="portlet-title tabbable-line">
-                                <div class="caption">
-                                    <span class="caption-subject font-green bold uppercase">Recent Signups</span>
-                                </div>
-                            </div>
-                            <div class="portlet-body">
-                                <div class="table-responsive">
-
-                                    <table class="table table-striped table-bordered table-hover" id="userTable">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Username</th>
-                                            <th>Email</th>
-                                        </tr>
-                                        </thead>
-                                        <?php
-                                        while ($row = $userData->fetch(PDO::FETCH_ASSOC)) {
-                                            $userId = $row['id'];
-                                            ?>
-                                            <tr class="" id="row<?php echo $userId; ?>">
-
-
-                                                <td><?php echo $row['name'] ?></td>
-                                                <td><?php echo $row['username'] ?></td>
-                                                <td><?php echo $row['email'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-
-                                    </table>
-
-                                </div> <!-- /.table-responsive -->
-                                <a href="users.php">
-                                <span class="pull-right btn btn-circle green btn-outline">
-                                View More...
-                            </span>
-                                </a>
-                            </div>
-
-                        </div>
                 </div>
             </div>
 
