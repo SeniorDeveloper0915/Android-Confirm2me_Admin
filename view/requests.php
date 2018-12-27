@@ -191,7 +191,7 @@ $userData->execute();
 
             $.easyAjax({
                 type: "POST",
-                url: "../ajax/delete_user.php?id="+id,
+                url: "../ajax/delete_request.php?id="+id,
                 container: "#deleteModal",
                 success: function (response) {
                     if (response.status == "success") {
