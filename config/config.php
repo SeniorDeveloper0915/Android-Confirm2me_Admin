@@ -19,7 +19,7 @@
 
     $GLOBALS['HOST']     = 'localhost';
     $GLOBALS['USERNAME'] = 'root';
-    $GLOBALS['PASSWORD'] = '';
+    $GLOBALS['PASSWORD'] = 'root';
     $GLOBALS['DATABASE'] = 'confirm2me';
 
 
