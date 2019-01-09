@@ -12,9 +12,9 @@
 /* Array of database columns which should be read and sent back to DataTables. Use a space where
  * you want to insert a non-database field (for example a counter or static image)
  */
-$aColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'created_at', 'id');
-$asColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'created_at', 'id');
-$aaColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'created_at', 'id');
+$aColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'id');
+$asColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'id');
+$aaColumns = array( 'id','username', 'password','email', 'firstname', 'lastname','phonenumber', 'PIN', 'id');
 
 /* Indexed column (used for fast and accurate table cardinality) */
 $sIndexColumn = "id";

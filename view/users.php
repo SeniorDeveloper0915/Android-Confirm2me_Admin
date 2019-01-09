@@ -72,7 +72,6 @@ $userData->execute();
                                 <th class="min-tablet">LastName</th>
                                 <th class="min-tablet">PhoneNumber</th>
                                 <th class="min-tablet">PIN</th>
-                                <th class="min-tablet">Date</th>
                                 <th>Id</th>
                                 <th>Actions</th>
                             </tr>
@@ -159,7 +158,6 @@ $userData->execute();
         "aaSorting": [[0, "desc"]],
         "sAjaxSource": "../ajax/user_view.php",
         "aoColumns": [
-            {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},
