@@ -8,10 +8,6 @@ if (!isset($_SESSION['admin'])) {
     header('location:../index.php');
 }
 
-// QUERY TO GET USER DATA
-$userData = $db->prepare('SELECT * FROM users');
-$userData->execute();
-
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +54,10 @@ $userData->execute();
                         <table class="table table-striped table-bordered table-hover dt-responsive" id="affidavitTable">
                             <thead>
                             <tr>
-                                <th class="min-tablet">Id</th>
+                                <th>Id</th>
                                 <th class="min-tablet">Content</th>
                                 <th class="min-tablet">Description</th>
+                                <th class="min-tablet">Owner</th>
                                 <th>Id</th>
                                 <th>Actions</th>
                             </tr>
@@ -147,6 +144,7 @@ $userData->execute();
         "aaSorting": [[0, "desc"]],
         "sAjaxSource": "../ajax/affidavit_view.php",
         "aoColumns": [
+            {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},
             {"bVisible": true, "bSearchable": true, "bSortable": true},

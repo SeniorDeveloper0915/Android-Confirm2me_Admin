@@ -65,7 +65,7 @@ $userData->execute();
                                 <th class="min-tablet">Sender_Mail</th>
                                 <th class="min-tablet">Receiver_Mail</th>
                                 <th class="min-tablet">Provider</th>
-                                <th class="min-tablet">updated_at</th>
+                                <th class="min-tablet">Date</th>
                                 <th>Id</th>
                                 <th>Actions</th>
                             </tr>

@@ -12,9 +12,9 @@
 /* Array of database columns which should be read and sent back to DataTables. Use a space where
  * you want to insert a non-database field (for example a counter or static image)
  */
-$aColumns = array( 'id','category', 'description','id');
-$asColumns = array( 'id','category', 'description','id');
-$aaColumns = array( 'id','category', 'description','id');
+$aColumns = array( 'id','category', 'description', 'owner', 'id');
+$asColumns = array( 'id','category', 'description', 'owner', 'id');
+$aaColumns = array( 'id','category', 'description', 'owner', 'id');
 
 /* Indexed column (used for fast and accurate table cardinality) */
 $sIndexColumn = "id";
@@ -45,7 +45,6 @@ function fatal_error ( $sErrorMessage = '' )
 /*
  * MySQL connection
  */
-
 if ( ! $gaSql['link'] = mysqli_connect( $GLOBALS["HOST"] , $GLOBALS["USERNAME"] , $GLOBALS["PASSWORD"]  ,$GLOBALS["DATABASE"]  ) )
 {
     fatal_error( 'Could not open connection to server' );
@@ -80,7 +79,7 @@ if ( isset( $_GET['iSortCol_0'] ) )
         }
     }
 
-    $sOrder = substr_replace( $sOrder, "", -8 );
+    $sOrder = substr_replace( $sOrder, "", -2 );
     if ( $sOrder == "ORDER BY" )
     {
         $sOrder = "";
@@ -129,12 +128,13 @@ for ( $i=0 ; $i<count($asColumns) ; $i++ )
 
 /*
  * SQL queries
- * Get data to display SELECT * FROM affidavits
+ * Get data to display SELECT * FROM users
  */
 $sQuery = "
         SELECT SQL_CALC_FOUND_ROWS ".str_replace(" , ", " ", implode(", ", $aColumns))."
         FROM   $sTable
         $sWhere
+        $sOrder
         $sLimit
     ";
 $rResult = mysqli_query($gaSql['link'], $sQuery ) or fatal_error( 'MySQL Error: ' . mysql_errno() );
@@ -173,27 +173,12 @@ while ( $aRow = mysqli_fetch_array( $rResult ) )
     for ( $i=0 ; $i<count($aaColumns) ; $i++ )
     {
 //        print_r($aaColumns[$i]);
-        if ( $aaColumns[$i] == "version" )
-        {
-            /* Special output formatting for 'version' column */
-            $row[] = ($aRow[ $aaColumns[$i] ]=="0") ? '-' : $aRow[ $aaColumns[$i] ];
-        }
-        else if ( $aaColumns[$i] != ' ' )
-        {
-            // Edit status column
-            if($aaColumns[$i] == 'status') {
-                if($aRow[$aaColumns[$i]] == 'enable') {
-                    $row[] = '<span class="label label-success">Active</span>';
-                } else {
-                    $row[] = '<span class="label label-danger">Inactive</span>';
-                }
-            } else {
                 /* General output */
                 $row[] = $aRow[ $aaColumns[$i] ];
-            }
-        }
+
     }
-    $row[] = '<a href="javascript:;" onclick="del('.$row[0].',\''.addslashes($row[1]).'\')" class="btn btn-outline red btn-xs margin-top-10">	<i class="fa fa-trash-o"></i> Delete</a>';
+    $row[] = '<a type="button" href="javascript:;" onclick="editModal('.$row[0].')" class="btn btn green btn-outline btn-xs margin-top-10"> <i class="fa fa-edit"></i> Edit</a>&nbsp;
+                <a href="javascript:;" onclick="del('.$row[0].',\''.addslashes($row[1]).'\')" class="btn btn-outline red btn-xs margin-top-10"> <i class="fa fa-trash-o"></i> Delete</a>';
 
     $output['aaData'][] = $row;
 }
